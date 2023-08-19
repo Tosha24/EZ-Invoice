@@ -31,22 +31,36 @@ const InvoicePage = () => {
       }
     };
 
-    const fetchInvoice = () => {
-      const invoiceRes = user?.data.invoices.filter((invoice: any) => {
-        if(invoice._id === params.invoiceId) return invoice;
-      });
-      setInvoice(invoiceRes);
+    const fetchInvoice = async() => {
+      const invoiceRes = await axios.post('/api/invoices/get-invoice', { userId: params.userId, invoiceId: params.invoiceId });
+
+      setInvoice(invoiceRes.data);
+      setPaid(invoiceRes?.data?.status === "Paid" ? true : false);
     };
 
     fetchUser();
     fetchInvoice();
-  }, [user?.data.companyName]);
+  }, []);
 
   const goBack = () => {
     router.back();
   };
 
-  const markAsPaid = () => {
+  const markAsPaid = async() => {
+    if(paid){
+      invoice.status = "Unpaid"
+    }
+    else{
+      invoice.status = "Paid"
+    }
+    const requestData = {
+      userId: params.userId,
+      invoiceId: params.invoiceId,
+      invoiceData: invoice,
+    }
+    const response = await axios.post('/api/invoices/update-invoice', requestData);
+    console.log(response);
+    console.log("Invoice updated succesfully");
     setPaid(!paid);
   }
 
@@ -59,7 +73,7 @@ const InvoicePage = () => {
   }
 
   const deleteInvoice = async() => {
-    const response = await axios.post('/api/invoices/delete-invoice', {userId: user?.data?._id, invoiceId: invoice[0]?._id})
+    const response = await axios.post('/api/invoices/delete-invoice', {userId: user?.data?._id, invoiceId: invoice?._id})
     if(response.status === 200){
       router.back();
       toast.success("Invoice Deleted Successfully!");
@@ -83,7 +97,7 @@ const InvoicePage = () => {
                 <div className="text-[22px] items-center flex flex-row gap-x-3 w-full">
                   <span className="font-semibold">Status: </span>
                   <span className="bg-[#fa983a] text-white w-full p-2 rounded-md justify-center items-center flex shadow-sm text-lg">
-                    {invoice[0]?.status}
+                    {invoice?.status}
                   </span>
                 </div>
                 <div className="flex flex-col gap-3 text-lg">
@@ -100,7 +114,7 @@ const InvoicePage = () => {
               </div>
             </div>
             <div>
-              <ShowInvoice user={user} invoice={invoice[0]} edit={edit}/>
+              <ShowInvoice user={user} invoice={invoice} edit={edit}/>
             </div>
           </div>
         </div>
