@@ -85,15 +85,15 @@ const InvoicePage = () => {
       <Navbar btn="LOGOUT" />
       {user && invoice ? (
         <div className="m-2 mx-3">
-          <div className="flex flex-row w-full gap-4">
-            <div className="w-1/5">
+          <div className="flex flex-row w-full gap-10">
+            <div className="w-1/6">
               <div className="flex flex-col w-1/6 rounded-lg gap-8 fixed mt-4">
-                <div
+                {/* <div
                   onClick={goBack}
                   className="cursor-pointer text-lg flex flex-row items-center gap-2"
                 >
                   <IoIosArrowBack /> Go Back
-                </div>
+                </div> */}
                 <div className="text-[22px] items-center flex flex-row gap-x-3 w-full">
                   <span className="font-semibold">Status: </span>
                   <span className="bg-[#fa983a] text-white w-full p-2 rounded-md justify-center items-center flex shadow-sm text-lg">
