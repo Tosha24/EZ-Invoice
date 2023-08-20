@@ -45,7 +45,9 @@ const ShowInvoice = ({ user, invoice, edit }: Props) => {
   });
 
   useEffect(() => {
-    handleCalculateTotal();
+    if(edit){
+      handleCalculateTotal();
+    }
   }, [localUser.items])
 
   const editField = (event: any) => {
@@ -373,17 +375,17 @@ const ShowInvoice = ({ user, invoice, edit }: Props) => {
                     <div className="flex flex-row items-start justify-between mt-2 gap-16">
                       <span className="font-bold">Discount:</span>
                       <span>
-                        <span className='mr-2'>({localUser.discountRate || 0}%)</span>
+                        <span className='mr-2'>({localUser.discountRate}%)</span>
                         {localUser.currency}
-                        {localUser.discountAmount || 0}
+                        {localUser.discountAmount}
                       </span>
                     </div>
                     <div className="flex flex-row items-start justify-between mt-2 gap-16">
                       <span className="font-bold">Tax:</span>
                       <span>
-                        <span className='mr-2'>({localUser.taxRate || 0}%)</span>
+                        <span className='mr-2'>({localUser.taxRate}%)</span>
                         {localUser.currency}
-                        {localUser.taxAmount || 0}
+                        {localUser.taxAmount}
                       </span>
                     </div>
                     <hr />
@@ -391,7 +393,7 @@ const ShowInvoice = ({ user, invoice, edit }: Props) => {
                       <span className="font-bold">Total:</span>
                       <span className="font-bold">
                         {localUser.currency}
-                        {localUser.total || 0}
+                        {localUser.total && localUser.total}
                       </span>
                     </div>
                   </div>

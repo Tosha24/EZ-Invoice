@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import InvoiceTotal from './InvoiceTotal'
 import AllInvoices from './AllInvoices'
 import { useParams, useRouter } from 'next/navigation'
@@ -15,6 +15,17 @@ const Dashboard = ({user}: Props) => {
   const router = useRouter();
   const params = useParams();
 
+  const [paid, setPaid] = useState(0);
+
+  useEffect(() => {
+    const findPaidInvoices = () => {
+      const paidInvoices = user.data.invoices.filter((invoice: any) => invoice.status === 'Paid');
+      setPaid(paidInvoices.length);
+    }
+
+    findPaidInvoices();
+  }, [])
+
   const openInvoice = (invoice_id : String) => {
     Loading;
     router.push(`/profile/${params.userId}/${invoice_id}`);
@@ -25,7 +36,7 @@ const Dashboard = ({user}: Props) => {
         <div className='h-full'>
             <div className='p-4 flex flex-row justify-around items-center'>
               <div> {" "} </div>
-                <InvoiceTotal total={user.data.invoices.length}/>
+                <InvoiceTotal total={user.data.invoices.length} paid={paid}/>
                 <div className='border w-32 h-12 text-lg font-bold cursor-pointer border-primaryColor tracking-wide font-bodyFont duration-300 items-center flex justify-center'>
                   <Link href={`/profile/${params.userId}/add-invoice`} className='no-underline text-primaryColor'>Create New</Link>
                 </div>
