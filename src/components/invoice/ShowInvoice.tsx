@@ -432,7 +432,7 @@ const ShowInvoice = ({ user, invoice, edit }: Props) => {
                   <option value="¥">JPY (Japanese Yen)</option>
                   <option value="₿">BTC (Bitcoin)</option>
                 </select>
-                <span className={`${edit && "hidden"} bg-borderColor p-1 flex justify-center rounded-lg text-lg`}>{localUser.currency}</span>
+                <span className={`${edit && "hidden"} bg-gray-200 p-1 flex justify-center rounded-lg text-lg`}>{localUser.currency}</span>
               </div>
               <div className="my-3">
                 <label className="font-bold">Tax rate:</label>
@@ -467,7 +467,7 @@ const ShowInvoice = ({ user, invoice, edit }: Props) => {
                     step="0.01"
                     max="100.00"
                   />
-                  <span className="bg-gray-200 w-[11%] border rounded-r-md border-borderColor p-1 font-bold text-secondary flex items-center justify-center">
+                  <span className="bg-gray-200 w-[11%] border rounded-r-md border-borderColor p-1 font-bold text-secondary flex items-center justify-center text-black">
                     %
                   </span>
                 </div>

@@ -31,7 +31,7 @@ const Navbar = ({ btn }: Props) => {
     <div className="w-full bg-white sticky h-20 lg:h-[12vh] top-0 z-20 px-4">
       <div className="max-w-container h-full mx-auto py-1 font-titleFont flex items-center justify-between">
         <div className="inline-flex items-center justify-center gap-4">
-          <Image src={logo} alt="logo" className="w-48 mx-2 md:mx-8" />
+          <Image src={logo} alt="logo" className="w-60 mx-2 md:mx-8" />
         </div>
         <div className="inline-flex items-center absolute right-4 md:right-9">
           {btn === "LOGIN" ? (

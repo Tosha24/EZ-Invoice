@@ -74,7 +74,7 @@ class InvoiceModal extends React.Component {
       pdf.save(`${this.props.info.billTo}-invoice.pdf`);
     }).then(() => {
       this.props.closeModal();
-      window.location.reload();
+      // window.location.reload();
     });
   };
 

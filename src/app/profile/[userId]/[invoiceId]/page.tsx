@@ -96,12 +96,12 @@ const InvoicePage = () => {
                 </div> */}
                 <div className="text-[22px] items-center flex flex-row gap-x-3 w-full">
                   <span className="font-semibold">Status: </span>
-                  <span className="bg-[#fa983a] text-white w-full p-2 rounded-md justify-center items-center flex shadow-sm text-lg">
+                  <span className={`${invoice.status == "Paid" ? "bg-green-700" : "bg-[#fa983a]"} text-white w-full p-2 rounded-md justify-center items-center flex shadow-sm text-lg`}>
                     {invoice?.status}
                   </span>
                 </div>
                 <div className="flex flex-col gap-3 text-lg">
-                  <button className="p-2 px-3 border rounded-md text-white bg-green-700 shadow-sm" onClick={markAsPaid}>
+                  <button className={`${paid ? "bg-[#fa983a]" : "bg-green-700"} p-2 px-3 border rounded-md text-white  shadow-sm`} onClick={markAsPaid}>
                     {paid ? "Mark as Unpaid" : "Mark as Paid"}
                   </button>
                   <button className="p-2 px-3 border rounded-md text-white bg-[#192a56] shadow-sm" onClick={edit ? saveChanges : editInvoice}>
