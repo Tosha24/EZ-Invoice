@@ -253,7 +253,7 @@ class InvoiceModal extends React.Component {
                 Download Copy
               </button>
               <button
-                className="flex max-w-fit mt-3 mt-md-0 bg-primaryColor items-center px-4 p-2 rounded-lg text-white hover:-translate-y-2 duration-300" onClick={this.SaveInvoice}
+                className={`${!this.props.save && "hidden"} flex max-w-fit mt-3 mt-md-0 bg-primaryColor items-center px-4 p-2 rounded-lg text-white hover:-translate-y-2 duration-300`} onClick={this.SaveInvoice}
               >
                 <RiSave3Fill className="mr-2 mt-[-3px]" />
                 Save Invoice

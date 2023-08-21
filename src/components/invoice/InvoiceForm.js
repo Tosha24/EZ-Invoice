@@ -10,34 +10,34 @@ class InvoiceForm extends React.Component {
     super(props);
     this.state = {
       isOpen: false,
-      currency: "₹",
-      currentDate: "",
-      invoiceNumber: 1,
-      dateOfIssue: "",
-      billTo: "",
-      gstin: "",
-      billToEmail: "",
-      billToAddress: "",
-      billToCity: "",
-      billToState: "",
-      billToContact: String(""),
-      notes: "",
-      total: "0.00",
-      subTotal: "0.00",
-      taxRate: "",
-      taxAmmount: "0.00",
-      discountRate: "",
-      discountAmmount: "0.00",
-      status: "Unpaid",
+      currency: this.props?.invoice?.currency || "₹",
+      currentDate: this.props?.invoice?.dateOfIssue || "",
+      invoiceNumber: this.props?.invoice?.invoiceNumber || 1,
+      dateOfIssue: this.props?.invoice?.dueDate || "",
+      billTo: this.props?.invoice?.customerName || "",
+      gstin: this.props?.invoice?.customerGstin || "",
+      billToEmail: this.props?.invoice?.customerEmail || "",
+      billToAddress: this.props?.invoice?.customerAddress || "",
+      billToCity: this.props?.invoice?.customerCity || "",
+      billToState: this.props?.invoice?.customerState || "",
+      billToContact: this.props?.invoice?.customerContact || String(""),
+      notes: this.props?.invoice?.notes || "",
+      total: this.props?.invoice?.totalAmount || "0.00",
+      subTotal: this.props?.invoice?.subTotal || "0.00",
+      taxRate: this.props?.invoice?.taxRate || "",
+      taxAmmount: this.props?.invoice?.taxAmount || "0.00",
+      discountRate: this.props?.invoice?.discountRate || "",
+      discountAmmount: this.props?.invoice?.discountAmount || "0.00",
+      status: this.props?.invoice?.status || "Unpaid",
       isLoading: false,
     };
     this.state.items = [
       {
         id: 0,
-        name: "",
-        description: "",
-        price: "0.00",
-        quantity: 1,
+        name: this.props?.invoice?.items[0]?.name || "",
+        description: this.props?.invoice?.items[0]?.description || "",
+        price: this.props?.invoice?.items[0]?.price || "0.00",
+        quantity: this.props?.invoice?.items[0]?.quantity || 1,
       },
     ];
     this.editField = this.editField.bind(this);
@@ -114,7 +114,8 @@ class InvoiceForm extends React.Component {
       name: evt.target.name,
       value: evt.target.value,
     };
-    var items = this.state.items.slice();
+
+    var items = this.props?.invoice?.items.slice() || this.state.items.slice();
     var newItems = items.map(function (items) {
       for (var key in items) {
         if (key == item.name && items.id == item.id) {
@@ -176,9 +177,10 @@ class InvoiceForm extends React.Component {
                             value={this.state.dateOfIssue}
                             name="dateOfIssue"
                             onChange={(event) => this.editField(event)}
-                            className="max-w-[150px] pl-4 p-[6px] rounded-lg bg-borderColor border"
+                            className={`${!this.props?.edit && "hidden"} max-w-[150px] pl-4 p-[6px] rounded-lg bg-borderColor border`}
                             required
                           />
+                          <span className={`${this.props?.edit && "hidden"}`}>{this.state.dateOfIssue}</span>
                         </div>
                       </div>
                       <div className='flex flex-col gap-2'>
@@ -192,6 +194,7 @@ class InvoiceForm extends React.Component {
                           onChange={(event) => this.editField(event)}
                           min="1"
                           required
+                          disabled={!this.props?.edit}
                         />
                       </div>
                       <div className='flex flex-row items-center'>
@@ -201,7 +204,7 @@ class InvoiceForm extends React.Component {
                           this.onStatusChange({
                             status: event.target.value,
                           })
-                        }>
+                        } disabled={!this.props?.edit}>
                           <option value="Unpaid">Unpaid</option>
                           <option value="Paid">Paid</option>
                         </select>
@@ -221,6 +224,7 @@ class InvoiceForm extends React.Component {
                           onChange={(event) => this.editField(event)}
                           autoComplete="off"
                           required
+                          disabled={!this.props?.edit}
                         />
                         <input
                           placeholder="GSTIN"
@@ -232,6 +236,7 @@ class InvoiceForm extends React.Component {
                           autoComplete="off"
                           maxLength={15}
                           required
+                          disabled={!this.props?.edit}
                         />
                         
                         <input
@@ -244,6 +249,7 @@ class InvoiceForm extends React.Component {
                           autoComplete="off"
                           maxLength={50}
                           required
+                          disabled={!this.props?.edit}
                         />
                         <input
                           placeholder="City"
@@ -254,6 +260,7 @@ class InvoiceForm extends React.Component {
                           onChange={(event) => this.editField(event)}
                           autoComplete="off"
                           required
+                          disabled={!this.props?.edit}
                         />
                         <input
                           placeholder="State"
@@ -264,6 +271,7 @@ class InvoiceForm extends React.Component {
                           onChange={(event) => this.editField(event)}
                           autoComplete="off"
                           required
+                          disabled={!this.props?.edit}
                         />
                         <div className='flex flex-row group'>
                           <div className='flex items-center justify-center p-1 rounded-l-lg border bg-gray-100 font-semibold'>@</div>
@@ -276,6 +284,7 @@ class InvoiceForm extends React.Component {
                             onChange={(event) => this.editField(event)}
                             autoComplete="off"
                             required
+                            disabled={!this.props?.edit}
                           />
                         </div>
                         <div className="flex flex-row group">
@@ -292,6 +301,7 @@ class InvoiceForm extends React.Component {
                             maxLength={10}
                             autoComplete="off"
                             required
+                            disabled={!this.props?.edit}
                           />
                         </div>
                       </div>
@@ -303,7 +313,7 @@ class InvoiceForm extends React.Component {
                           value={user.data.companyName}
                           type="text"
                           name="billFrom"
-                          disabled
+                          disabled 
                         />
                         <input
                           placeholder="GSTIN No."
@@ -370,6 +380,7 @@ class InvoiceForm extends React.Component {
                       onRowDel={this.handleRowDel.bind(this)}
                       currency={this.state.currency}
                       items={this.state.items}
+                      edit={this.props?.edit}
                     />
                     <div className="flex flex-end mt-4 justify-content-end">
                       <div className="col-lg-6">
@@ -416,6 +427,7 @@ class InvoiceForm extends React.Component {
                       className="my-2 block w-full placeholder:text-gray-600 bg-borderColor rounded-sm p-2"
                       rows="2"
                       autoComplete="off"
+                      disabled={!this.props?.edit}
                     />
                   </div>
                 </div>
@@ -423,7 +435,7 @@ class InvoiceForm extends React.Component {
                   <div className="fixed pt-md-3 pt-xl-4">
                     <button
                       type="submit"
-                      className="block w-full bg-primaryColor hover:bg-hoverColor text-lg text-white tracking-wider py-2 rounded-lg"
+                      className={`${!this.props?.edit && "bg-primaryColor/40 hover:bg-primaryColor/40 cursor-not-allowed" } block w-full bg-primaryColor hover:bg-hoverColor text-lg text-white tracking-wider py-2 rounded-lg`}
                     >
                       Review Invoice
                     </button>
@@ -437,6 +449,7 @@ class InvoiceForm extends React.Component {
                         }
                         className="bg-borderColor p-2 rounded-lg items-center my-1 border border-borderColor"
                         aria-label="Change Currency"
+                        disabled={!this.props?.edit}
                       >
                         <option value="₹">INR (Indian Rupees)</option>
                         <option value="$">USD (United States Dollar)</option>
@@ -458,6 +471,7 @@ class InvoiceForm extends React.Component {
                           min="0.00"
                           step="0.01"
                           max="100.00"
+                          disabled={!this.props?.edit}
                         />
                         <span className="bg-gray-50 w-[11%] border rounded-r-md border-borderColor p-1 font-bold text-gray-500 flex items-center justify-center">
                           %
@@ -477,6 +491,7 @@ class InvoiceForm extends React.Component {
                           min="0.00"
                           step="0.01"
                           max="100.00"
+                          disabled={!this.props?.edit}
                         />
                         <span className="bg-gray-50 w-[11%] border rounded-r-md border-borderColor p-1 font-bold text-secondary flex items-center justify-center">
                           %
@@ -505,6 +520,8 @@ class InvoiceForm extends React.Component {
               discountRate={this.state.discountRate}
               total={this.state.total}
               user={user}
+              edit={this.props?.edit}
+              save={this.props.save}
             />
           </div>
         )}

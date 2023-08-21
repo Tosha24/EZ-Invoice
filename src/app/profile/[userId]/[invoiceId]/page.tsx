@@ -70,6 +70,7 @@ const InvoicePage = () => {
 
   const saveChanges = () => {
     setEdit(false);
+    toast.success("Invoice Updated Successfully!");
   }
 
   const deleteInvoice = async() => {
@@ -114,7 +115,7 @@ const InvoicePage = () => {
               </div>
             </div>
             <div>
-              <ShowInvoice user={user} invoice={invoice} edit={edit}/>
+              <InvoiceForm user={user} invoice={invoice} edit={edit} save={false}/>
             </div>
           </div>
         </div>

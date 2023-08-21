@@ -7,6 +7,7 @@ class InvoiceItem extends React.Component {
     var onItemizedItemEdit = this.props.onItemizedItemEdit;
     var currency = this.props.currency;
     var rowDel = this.props.onRowDel;
+    var edit = this.props?.edit;
     var itemTable = this.props.items.map(function (item, index) {
       return (
         <ItemRow
@@ -16,6 +17,7 @@ class InvoiceItem extends React.Component {
           key={item.id}
           index={index+1}
           currency={currency}
+          edit={edit}
         />
       );
     });
@@ -41,7 +43,7 @@ class InvoiceItem extends React.Component {
             </tr>
           </tbody>
         </table>  
-        <button className="bg-primaryColor p-2 px-3 font-medium text-md text-white mt-2 rounded-lg hover:bg-hoverColor" onClick={this.props.onRowAdd}>
+        <button className="bg-primaryColor p-2 px-3 font-medium text-md text-white mt-2 rounded-lg hover:bg-hoverColor" onClick={this.props.onRowAdd} disabled={!this.props?.edit}>
           Add Item
         </button>
       </div>
@@ -69,6 +71,7 @@ class ItemRow extends React.Component {
                 value: this.props.item.name,
                 id: this.props.item.id,
               }}
+              disabled={!this.props?.edit}
             />
           </td>
           <td className="min-w-[70px] pr-1">
@@ -82,6 +85,7 @@ class ItemRow extends React.Component {
                 value: this.props.item.quantity,
                 id: this.props.item.id,
               }}
+              disabled={!this.props?.edit}
             />
           </td>
           <td className="min-w-[130px] pr-1">
@@ -97,7 +101,9 @@ class ItemRow extends React.Component {
                 textAlign: "text-end",
                 value: this.props.item.price,
                 id: this.props.item.id,
+                required: true,
               }}
+              disabled={!this.props?.edit}
             />
           </td>
           <td className="text-center min-w-[50px]">
@@ -119,7 +125,9 @@ class ItemRow extends React.Component {
                 value: this.props.item.description,
                 id: this.props.item.id,
                 maxLength: 80,
+                required: false,
               }}
+              disabled={!this.props?.edit}
             />
           </td>
           <td></td>

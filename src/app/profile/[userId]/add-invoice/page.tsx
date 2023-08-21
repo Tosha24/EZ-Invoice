@@ -42,7 +42,7 @@ export default function AddInvoice() {
           >
             <IoIosArrowBack/> Go Back
           </div>
-          <InvoiceForm user={user} />
+          <InvoiceForm user={user} edit={true} save={true}/>
         </div>
       ) : (
         <div>

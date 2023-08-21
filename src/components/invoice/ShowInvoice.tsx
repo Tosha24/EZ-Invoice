@@ -177,7 +177,7 @@ const ShowInvoice = ({ user, invoice, edit }: Props) => {
                       name="dateOfIssue"
                       onChange={(event) => editField(event)}
                       className={`${!edit && "hidden"} max-w-[150px] pl-4 p-[6px] rounded-lg bg-borderColor border`}
-                      required
+                      
                     />
                     <span className={`${edit && "hidden"}`}>{invoice.dueDate}</span>
                   </div>
@@ -191,7 +191,7 @@ const ShowInvoice = ({ user, invoice, edit }: Props) => {
                     name="invoiceNumber"
                     onChange={(event) => editField(event)}
                     min="1"
-                    required
+                    
                   />
                   <span className={`${edit && 'hidden'} text-lg`}>{invoice.invoiceNumber}</span>
                 </div>
@@ -208,7 +208,7 @@ const ShowInvoice = ({ user, invoice, edit }: Props) => {
                     name="billTo"
                     onChange={(event) => editField(event)}
                     autoComplete="off"
-                    required
+                    
                   />
                   <input
                     placeholder="GSTIN"
@@ -219,7 +219,7 @@ const ShowInvoice = ({ user, invoice, edit }: Props) => {
                     onChange={(event) => editField(event)}
                     autoComplete="off"
                     maxLength={15}
-                    required
+                    
                   />
 
                   <input
@@ -231,7 +231,7 @@ const ShowInvoice = ({ user, invoice, edit }: Props) => {
                     onChange={(event) => editField(event)}
                     autoComplete="off"
                     maxLength={50}
-                    required
+                    
                   />
                   <input
                     placeholder="City"
@@ -241,7 +241,7 @@ const ShowInvoice = ({ user, invoice, edit }: Props) => {
                     name="billToCity"
                     onChange={(event) => editField(event)}
                     autoComplete="off"
-                    required
+                    
                   />
                   <input
                     placeholder="State"
@@ -251,7 +251,7 @@ const ShowInvoice = ({ user, invoice, edit }: Props) => {
                     name="billToState"
                     onChange={(event) => editField(event)}
                     autoComplete="off"
-                    required
+                    
                   />
                   <div className="flex flex-row group">
                     <div className="flex items-center justify-center p-1 rounded-l-lg border bg-gray-100 font-semibold">
@@ -265,7 +265,7 @@ const ShowInvoice = ({ user, invoice, edit }: Props) => {
                       name="billToEmail"
                       onChange={(event) => editField(event)}
                       autoComplete="off"
-                      required
+                      
                     />
                   </div>
                   <div className="flex flex-row group">
@@ -281,7 +281,7 @@ const ShowInvoice = ({ user, invoice, edit }: Props) => {
                       onChange={(event) => editField(event)}
                       maxLength={10}
                       autoComplete="off"
-                      required
+                      
                     />
                   </div>
                 </div>
@@ -415,7 +415,7 @@ const ShowInvoice = ({ user, invoice, edit }: Props) => {
             <div className="fixed w-1/6">
               <button
                 type="submit"
-                className="block w-full bg-primaryColor hover:bg-hoverColor text-lg text-white tracking-wider py-2 rounded-lg"
+                className={`${!edit && "bg-primaryColor/40 cursor-not-allowed hover:bg-primaryColor/40"} block w-full bg-primaryColor hover:bg-hoverColor text-lg text-white tracking-wider py-2 rounded-lg`} disabled={!edit}
               >
                 Review Invoice
               </button>
@@ -477,7 +477,7 @@ const ShowInvoice = ({ user, invoice, edit }: Props) => {
         </div>
       </form>
     </div>
-    {/* {isOpen && (
+    {isOpen && (
       <div className="w-full h-full bg-[#0000007F] z-10 top-0 right-0 left-0 bottom-0 fixed items-center justify-center flex overflow-y-scroll scrollbar-none pt-24">
         <ShowModal
           closeModal={closeModal}
@@ -486,7 +486,7 @@ const ShowInvoice = ({ user, invoice, edit }: Props) => {
           user={user}
         />
       </div>
-    )} */}
+    )}
   </>
   );
 };

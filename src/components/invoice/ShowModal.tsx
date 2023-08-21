@@ -44,8 +44,6 @@ const ShowModal = ({
         pdf.save(`${localUser.billTo}-invoice.pdf`);
       })
       .then(() => {
-        // localUser.closeModal();
-        // window.location.reload();
       });
   };
 
@@ -54,15 +52,11 @@ const ShowModal = ({
       const response = await axios.post("/api/users/invoice", localUser);
       console.log(response);
       toast.success("Invoice Saved Successfully");
-    //   localUser.closeModal();
-    //   window.location.reload();
     } catch (error) {
       console.log(error);
       toast.error("Error while saving invoice!! Please try again later.");
     }
   };
-
-  const formattedDate = format(new Date(localUser.dateOfIssue), "dd/MM/yyyy");
 
   return (
     <div className="bg-white w-[80%] min-h-[40%] items-center justify-center">
@@ -79,7 +73,7 @@ const ShowModal = ({
                   Invoice : {localUser.invoiceNumber || ""}
                 </h6>
                 <h6 className="fw-bold text-secondary text-black">
-                  Due Date:&nbsp;{formattedDate || ""}
+                  Due Date:&nbsp;{localUser.dateOfIssue || ""}
                 </h6>
               </div>
             </div>

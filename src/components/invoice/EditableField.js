@@ -30,7 +30,8 @@ class EditableField extends React.Component {
           onChange={this.props.onItemizedItemEdit}
           autoComplete="off"
           maxLength={this.props.cellData.maxLength}
-          required
+          required={this.props.cellData.required}
+          disabled={this.props.disabled}
         />
       </div>
     );
