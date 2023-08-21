@@ -35,6 +35,7 @@ class InvoiceModal extends React.Component {
       discountAmount: Number(this.props.discountAmmount),
       totalAmount: Number(this.props.total),
       status: this.props.info.status,
+      notes: this.props.info.notes,
       items: [{
         name: this.props.items[0].name,
         description: this.props.items[0].description,
