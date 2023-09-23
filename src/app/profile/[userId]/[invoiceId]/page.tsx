@@ -1,13 +1,11 @@
 "use client";
 
-import ShowInvoice from "@/components/invoice/ShowInvoice";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Loading from "@/components/Loading";
-import { IoIosArrowBack } from "react-icons/io";
 import InvoiceForm from "@/components/invoice/InvoiceForm";
 import { toast } from "react-hot-toast";
 
@@ -41,10 +39,6 @@ const InvoicePage = () => {
     fetchUser();
     fetchInvoice();
   }, []);
-
-  const goBack = () => {
-    router.back();
-  };
 
   const markAsPaid = async() => {
     if(paid){
@@ -89,12 +83,6 @@ const InvoicePage = () => {
           <div className="flex flex-row w-full gap-10">
             <div className="w-1/6">
               <div className="flex flex-col w-1/6 rounded-lg gap-8 fixed mt-4">
-                {/* <div
-                  onClick={goBack}
-                  className="cursor-pointer text-lg flex flex-row items-center gap-2"
-                >
-                  <IoIosArrowBack /> Go Back
-                </div> */}
                 <div className="text-[22px] items-center flex flex-row gap-x-3 w-full">
                   <span className="font-semibold">Status: </span>
                   <span className={`${invoice.status == "Paid" ? "bg-green-700" : "bg-[#fa983a]"} text-white w-full p-2 rounded-md justify-center items-center flex shadow-sm text-lg`}>

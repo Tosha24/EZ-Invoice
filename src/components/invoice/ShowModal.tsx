@@ -1,15 +1,11 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Modal from "react-bootstrap/Modal";
 import { BiCloudDownload } from "react-icons/bi";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
-import { format } from "date-fns";
 import { RiSave3Fill } from "react-icons/ri";
 import { FaPencilAlt } from "react-icons/fa";
-import Loading from "../Loading";
 import axios from "axios";
-import { toDate } from "date-fns/esm";
 import { toast } from "react-hot-toast";
 
 interface Props {

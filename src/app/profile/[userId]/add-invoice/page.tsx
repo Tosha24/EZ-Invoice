@@ -9,7 +9,6 @@ import { useState, useEffect } from "react";
 import { IoIosArrowBack } from "react-icons/io";
 
 export default function AddInvoice() {
-  const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = useState(null);
   const [userId, setUserId] = useState("");
   const router = useRouter();

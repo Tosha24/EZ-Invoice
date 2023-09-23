@@ -36,8 +36,8 @@ const Dashboard = ({ user }: Props) => {
   return (
     <>
       <div className="h-full">
-        <div className="p-4 flex flex-row justify-between items-center">
-          <InvoiceTotal total={user.data.invoices.length} paid={paid}/>
+        <div className="p-4 px-8 flex flex-row justify-between items-center">
+          <InvoiceTotal total={user.data.invoices.length} paid={paid} user={user}/>
           <Link
             href={`/profile/${params.userId}/add-invoice`}
             className="no-underline px-2 absolute bottom-0 right-0 mb-7 mr-6"

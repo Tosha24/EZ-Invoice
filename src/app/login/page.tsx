@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import Button from "@/components/Button";
 import Link from "next/link";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Loading from "@/components/Loading";

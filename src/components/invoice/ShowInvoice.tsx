@@ -1,8 +1,6 @@
-import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { BiSolidPhone } from "react-icons/bi";
 import InvoiceItem from "./InvoiceItem";
-import InvoiceModal from "./InvoiceModal";
 import ShowModal from "./ShowModal";
 
 interface Props {
