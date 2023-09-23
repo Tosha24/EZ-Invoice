@@ -45,7 +45,7 @@ const ShowModal = ({
 
   const SaveInvoice = async () => {
     try {
-      const response = await axios.post("/api/users/invoice", localUser);
+      const response = await axios.post(`/api/users/invoice`, localUser);
       console.log(response);
       toast.success("Invoice Saved Successfully");
     } catch (error) {

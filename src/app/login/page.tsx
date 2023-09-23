@@ -31,7 +31,7 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       setLoading(true);
-      const response = await axios.post("/api/users/login", user);
+      const response = await axios.post(`/api/users/login`, user);
       if (response.data.status === 400) {
         toast.error(response.data.error);
       } else {

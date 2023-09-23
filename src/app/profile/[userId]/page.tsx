@@ -6,13 +6,13 @@ import { useEffect, useState } from "react";
 import Dashboard from "@/components/dashboard/Dashboard";
 import Navbar from "@/components/Navbar";
 
-export default function UserProfile({ params }: any) {
+export default function UserProfile() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await axios.get("/api/users/user");
+        const response = await axios.get(`/api/users/user`);
         setUser(response.data);
       } catch (error) {
         console.log(error);

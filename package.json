@@ -1,7 +1,6 @@
 {
   "name": "invoice-generator",
   "version": "0.1.0",
-  "proxy": "https://ez-invoice.netlify.app/",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -28,7 +27,7 @@
     "jspdf": "^2.5.1",
     "moment": "^2.29.4",
     "mongoose": "^7.3.1",
-    "next": "13.4.7",
+    "next": "^13.5.2",
     "nodemailer": "^6.9.4",
     "postcss": "8.4.24",
     "react": "18.2.0",

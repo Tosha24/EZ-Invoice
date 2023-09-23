@@ -23,7 +23,7 @@ const Profile = ({ user }: Props) => {
     try {
       setEdit(false);
       console.log(localUser);
-      const response = axios.post("/api/users/update-profile", localUser);
+      const response = axios.post(`/api/users/update-profile`, localUser);
       toast.success("Profile Updated Successfully!");
     } catch (error: any) {
       console.log(error);

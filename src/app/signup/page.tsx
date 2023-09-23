@@ -70,7 +70,7 @@ const Signup = () => {
     console.log(user);
     try {
       setLoading(true);
-      const response = await axios.post("/api/users/signup", user);
+      const response = await axios.post(`/api/users/signup`, user);
       if (response?.status === 400) toast.error("User already exists");
       else {
         toast.success("User created successfully");

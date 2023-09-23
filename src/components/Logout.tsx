@@ -10,7 +10,7 @@ const Logout = () => {
     const handleLogout = async() => {
         try{
             setIsLoading(true);
-            await axios.get('/api/users/logout');
+            await axios.get(`/api/users/logout`);
             toast.success("Logged-out successfully!");
             router.push('/');
 

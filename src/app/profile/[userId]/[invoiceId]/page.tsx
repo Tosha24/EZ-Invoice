@@ -21,7 +21,7 @@ const InvoicePage = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await axios.get("/api/users/user");
+        const response = await axios.get(`/api/users/user`);
         setUser(response.data);
         console.log(user);
       } catch (error) {
@@ -30,7 +30,7 @@ const InvoicePage = () => {
     };
 
     const fetchInvoice = async() => {
-      const invoiceRes = await axios.post('/api/invoices/get-invoice', { userId: params.userId, invoiceId: params.invoiceId });
+      const invoiceRes = await axios.post(`/api/invoices/get-invoice`, { userId: params.userId, invoiceId: params.invoiceId });
 
       setInvoice(invoiceRes.data);
       setPaid(invoiceRes?.data?.status === "Paid" ? true : false);
@@ -52,7 +52,7 @@ const InvoicePage = () => {
       invoiceId: params.invoiceId,
       invoiceData: invoice,
     }
-    const response = await axios.post('/api/invoices/update-invoice', requestData);
+    const response = await axios.post(`/api/invoices/update-invoice`, requestData);
     console.log(response);
     console.log("Invoice updated succesfully");
     setPaid(!paid);
@@ -68,7 +68,7 @@ const InvoicePage = () => {
   }
 
   const deleteInvoice = async() => {
-    const response = await axios.post('/api/invoices/delete-invoice', {userId: user?.data?._id, invoiceId: invoice?._id})
+    const response = await axios.post(`/api/invoices/delete-invoice`, {userId: user?.data?._id, invoiceId: invoice?._id})
     if(response.status === 200){
       router.back();
       toast.success("Invoice Deleted Successfully!");

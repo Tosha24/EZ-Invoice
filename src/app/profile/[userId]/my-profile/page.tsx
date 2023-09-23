@@ -12,7 +12,7 @@ const Showprofile = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await axios.get("/api/users/user");
+        const response = await axios.get(`/api/users/user`);
         setUser(response.data);
         console.log(user);
       } catch (error) {
