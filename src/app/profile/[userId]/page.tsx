@@ -3,7 +3,7 @@
 import Loading from "@/components/Loading";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Dashboard from "@/components/dashboard/Dashboard";
+import Dashboard from "@/components/Dashboard/Dashboard";
 import Navbar from "@/components/Navbar";
 
 export default function UserProfile() {

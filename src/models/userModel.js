@@ -100,6 +100,10 @@ const invoiceSchema = {
         required: [false],
         default: "Unpaid",
     },
+    notes: {
+        type: String,
+        required: [false],
+    }
 }
 
 const userSchema = new mongoose.Schema({
