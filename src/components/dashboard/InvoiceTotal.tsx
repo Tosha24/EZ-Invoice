@@ -46,7 +46,7 @@ const InvoiceTotal = ({total, paid=0, user} : Props) => {
     </div>
     <div className='bg-[#d4b0f6] p-2 px-3 font-extrabold flex flex-row items-center gap-2 justify-center rounded-md text-black text-lg shadow-shadow cursor-pointer'>
       <div>
-        <CSVLink data={user.data.invoices} headers={headers} filename={`${user.data.companyName}.csv`}>Export data</CSVLink>
+        <CSVLink data={user.data.invoices} headers={headers} filename={`${user.data.companyName}.csv`} className='no-underline text-black'>Export data</CSVLink>
       </div>
     </div>
     </div>

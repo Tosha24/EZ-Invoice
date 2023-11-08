@@ -96,37 +96,20 @@ function InvoiceF (props) {
             subTotal = parseFloat(parseFloat(subTotal) + parseFloat(item.price).toFixed(2) * parseInt(item.quantity)).toFixed(2);
         });
 
-        setInvoiceData((prevData) => {
-            return {
-                ...prevData,
-                subTotal: parseFloat(subTotal).toFixed(2),
-            }
-        },
-        () => {
-            setInvoiceData((prevState) => {
-                return {
-                    ...prevState,
-                    taxAmount: parseFloat(parseFloat(subTotal) * (invoiceData?.taxRate / 100)).toFixed(2),
-                }
-            },
-            () => {
-                setInvoiceData((prevState) => {
-                    return {
-                        ...prevState,
-                        discountAmount: parseFloat(parseFloat(subTotal) * (invoiceData?.discountRate / 100)).toFixed(2),
-                    }
-                },
-                () => {
-                    setInvoiceData((prevState) => {
-                        return {
-                            ...prevState,
-                            totalAmount: subTotal - invoiceData?.discountAmount + parseFloat(invoiceData?.taxAmount),
-                        }
-                    });
-                });
-            });
-        }
-        );
+        setInvoiceData((prevState) => {
+          var newSubTotal = parseFloat(subTotal).toFixed(2);
+          var newTaxAmount = parseFloat(parseFloat(newSubTotal) * (prevState.taxRate / 100)).toFixed(2);
+          var newDiscountAmount = parseFloat(newSubTotal) * (prevState.discountRate / 100).toFixed(2);
+          var newTotalAmount = parseFloat(newSubTotal - newDiscountAmount + newTaxAmount).toFixed(2);
+
+          return {
+            ...prevState,
+            subTotal: newSubTotal,
+            taxAmount: newTaxAmount,
+            discountAmount: newDiscountAmount,
+            totalAmount: newTotalAmount,
+          };
+        });
     }
 
     const onItemizedItemEdit = (evt) => {
